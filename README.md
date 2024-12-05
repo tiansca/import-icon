@@ -17,10 +17,10 @@ npm install import-icon
 
 ### 参数
 1. baseUrl: 图标库地址
-2. localPath: 保存图标文件的本地路径，若为空，则不下载图标文件，直接引入线上文件
+2. localPath: 保存图标文件的本地相对路径，若为空，则不下载图标文件，直接引入线上文件
 3. cssIcons: 需要引入的css图标库名称
 4. jsIcons: 需要引入的js图标库名称
-5. htmlPath: index.html文件路径
+5. htmlPath: index.html文件的相对路径
 
 ```json
 {
