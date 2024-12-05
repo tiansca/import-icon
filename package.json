@@ -1,0 +1,32 @@
+{
+  "name": "import-icon",
+  "version": "0.0.5",
+  "main": "dist/index.js",
+  "type": "module",
+  "description": "Import font icon library file",
+  "keywords": [
+    "import",
+    "svg",
+    "icon",
+    "font"
+  ],
+  "scripts": {
+  },
+  "files": [
+    "README.md",
+    "README.EN.md",
+    "package.json",
+    "index.js"
+  ],
+  "bin": {
+    "import-icon": "./index.js"
+  },
+  "author": "myrontian",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "pkg-dir": "^8.0.0"
+  }
+}
