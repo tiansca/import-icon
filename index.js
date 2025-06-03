@@ -132,7 +132,12 @@ async function updateIconFile(name) {
       asyncTask.push(task);
     }
     await Promise.all(asyncTask);
-    const filePath = path.join(assetBasePath, localPath.replace("public", ""), name, `${name}.css`)
+    let filePath = path.join("/", localPath.replace("public", ""), name, `${name}.css`)
+    if (assetBasePath !== "/") {
+      filePath = assetBasePath + filePath
+      // 将//或者\\替换为/
+      filePath = filePath.replace(/\/\/|\\\\|\/\\|\\\//g, "/")
+    }
     // 在index.html中插入link标签
     await insertTag(
       `<link rel="stylesheet" type="text/css" href="${filePath}">`,
@@ -168,7 +173,13 @@ async function updateIconJs(name) {
     }
     await Promise.all(asyncTask);
     // 在index.html中插入link标签
-    const filePath = path.join(assetBasePath, localPath.replace("public", ""), name, `${name}.js`)
+    let filePath = path.join('/', localPath.replace("public", ""), name, `${name}.js`)
+    if (assetBasePath !== "/") {
+      filePath = assetBasePath + filePath
+      console.log(filePath)
+      // 将//或者\\替换为/
+      filePath = filePath.replace(/\/\/|\\\\|\/\\|\\\//g, "/")
+    }
     await insertTag(
       `<script rel="stylesheet" type="text/javascript" src="${filePath}"></script>`,
       "</body>"
