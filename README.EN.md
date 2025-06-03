@@ -21,6 +21,7 @@ Create a new configuration file named 'icon.config.json' in the root directory o
 3. cssIcons: The name of the CSS icon library that needs to be introduced 
 4. jsIcons: The name of the JS Icon Library you need to import 
 5. htmlPath: The relative path of the index.html file
+6. assetBasePath: The base path for introducing icon libraries (script or link tags) defaults to "/"
 
 ```json
 {
@@ -28,7 +29,8 @@ Create a new configuration file named 'icon.config.json' in the root directory o
   "localPath": "public/",
   "cssIcons": [],
   "jsIcons": ["dibicon"],
-  "htmlPath": "index.html"
+  "htmlPath": "index.html",
+  "assetBasePath": "/"
 }
 ```
 

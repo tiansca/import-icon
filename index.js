@@ -12,6 +12,7 @@ let localPath = ''
 let cssArr = []
 let svgArr = []
 let htmlPath = ''
+let assetBasePath = ''
 // 创建目录
 function makeDir(dirPath) {
   return new Promise((resolve, reject) => {
@@ -116,7 +117,7 @@ function insertTag(el, target) {
 async function updateIconFile(name) {
   if (localPath) {
     // 创建目录
-    const dir = path.resolve(localPath, name)
+    const dir = path.join(localPath, name)
     await makeDir(dir);
     // 文件地址 url: `${baseUrl}${name}/${name}.css`,
     const typeArr = ["css", "eot", "woff2", "woff", "ttf", "svg"];
@@ -131,12 +132,10 @@ async function updateIconFile(name) {
       asyncTask.push(task);
     }
     await Promise.all(asyncTask);
+    const filePath = path.join(assetBasePath, localPath.replace("public", ""), name, `${name}.css`)
     // 在index.html中插入link标签
     await insertTag(
-      `<link rel="stylesheet" type="text/css" href="/${localPath.replace(
-        "public",
-        "/"
-      )}${name}/${name}.css">`,
+      `<link rel="stylesheet" type="text/css" href="${filePath}">`,
       "</head>"
     );
   } else {
@@ -169,7 +168,7 @@ async function updateIconJs(name) {
     }
     await Promise.all(asyncTask);
     // 在index.html中插入link标签
-    const filePath = path.join('/', localPath.replace("public", ""), name, `${name}.js`)
+    const filePath = path.join(assetBasePath, localPath.replace("public", ""), name, `${name}.js`)
     await insertTag(
       `<script rel="stylesheet" type="text/javascript" src="${filePath}"></script>`,
       "</body>"
@@ -197,7 +196,8 @@ async function getConfig() {
   "localPath": "public/",
   "cssIcons": [],
   "jsIcons": [],
-  "htmlPath": "index.html"
+  "htmlPath": "index.html",
+  "assetBasePath": "/"
 }
     `
     fs.writeFileSync(configPath, template)
@@ -213,6 +213,7 @@ async function getConfig() {
   cssArr = config.cssIcons
   svgArr = config.jsIcons
   htmlPath = config.htmlPath
+  assetBasePath = config.assetBasePath || '/'
   if (!baseUrl || (!cssArr && !svgArr) || !htmlPath) {
     console.log('请配置icon.config.js')
     throw new Error('请配置icon.config.js')

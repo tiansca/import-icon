@@ -21,6 +21,7 @@ npm install import-icon
 3. cssIcons: 需要引入的css图标库名称
 4. jsIcons: 需要引入的js图标库名称
 5. htmlPath: index.html文件的相对路径
+6. assetBasePath: 引入图标库(script或link标签)的base路径，默认为"/"
 
 ```json
 {
@@ -28,7 +29,8 @@ npm install import-icon
   "localPath": "public/",
   "cssIcons": [],
   "jsIcons": ["dibicon"],
-  "htmlPath": "index.html"
+  "htmlPath": "index.html",
+  "assetBasePath": "/"
 }
 ```
 

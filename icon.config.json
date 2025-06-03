@@ -3,6 +3,7 @@
   "localPath": "",
   "cssIcons": [],
   "jsIcons": ["dibicon"],
-  "htmlPath": "index.html"
+  "htmlPath": "index.html",
+  "assetBasePath": "/"
 }
     
